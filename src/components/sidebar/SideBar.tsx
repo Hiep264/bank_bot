@@ -1,13 +1,21 @@
 import SidebarItem
   from "./SideBarItem";
 
+import NewChatButton
+  from "./NewChatButton";
+
+import {
+  useChatContext,
+} from "../../context/ChatContext";
+
 function SideBar() {
 
-  const chats = [
-    "Chat 1",
-    "Chat 2",
-    "Chat 3",
-  ];
+  const {
+    conversations,
+    currentConversationId,
+    switchConversation,
+    createNewConversation,
+  } = useChatContext();
 
   return (
     <div
@@ -16,6 +24,8 @@ function SideBar() {
         bg-gray-900
         text-white
         p-4
+        flex
+        flex-col
       "
     >
       <h1
@@ -28,11 +38,36 @@ function SideBar() {
         Chats
       </h1>
 
-      <div className="space-y-2">
-        {chats.map((chat) => (
+      <NewChatButton
+        onClick={
+          createNewConversation
+        }
+      />
+
+      <div
+        className="
+          flex-1
+          overflow-y-auto
+          space-y-2
+          mt-4
+        "
+      >
+        {conversations.map((
+          chat
+        ) => (
           <SidebarItem
-            key={chat}
-            title={chat}
+            key={chat.id}
+            id={chat.id}
+            title={
+              chat.title ?? "New Chat"
+            }
+            active={
+              chat.id ===
+              currentConversationId
+            }
+            onClick={
+              switchConversation
+            }
           />
         ))}
       </div>

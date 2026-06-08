@@ -4,8 +4,9 @@ import MessageList
 import ChatInput
   from "./ChatInput";
 
-import { useChat }
-  from "../../hooks/useChat";
+import {
+  useChatContext,
+} from "../../context/ChatContext";
 
 function ChatBox() {
 
@@ -13,7 +14,7 @@ function ChatBox() {
     messages,
     sendMessage,
     loading,
-  } = useChat();
+  } = useChatContext();
 
   return (
     <div

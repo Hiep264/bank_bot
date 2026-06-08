@@ -22,3 +22,31 @@ export const sendChatMessage =
 
     return response.data;
 };
+
+
+export const sendChatMessageStream =
+  async (
+    payload: ChatRequest,
+    onChunk: (text: string) => void
+  ): Promise<ChatResponse> => {
+
+    const response =
+      await fetch(
+        `${API_URL}/chat`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type":
+              "application/json",
+          },
+          body: JSON.stringify(
+            payload
+          ),
+        }
+      );
+
+    const data =
+      await response.json();
+
+    return data;
+};

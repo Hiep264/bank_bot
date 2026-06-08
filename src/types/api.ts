@@ -1,15 +1,13 @@
-import type { Message }
-  from "./chat";
-
 export interface ChatRequest {
 
-  messages: {
-    role: Message["role"];
-    content: string;
-  }[];
+  conversation_id: number | null;
+
+  message: string;
 }
 
 export interface ChatResponse {
 
   reply: string;
+
+  conversation_id: number;
 }
