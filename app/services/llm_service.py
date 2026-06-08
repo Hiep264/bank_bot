@@ -15,14 +15,24 @@ class LLMService:
 
     async def generate_reply(
         self,
-        messages
+        messages,
+        summary: str | None = None
     ) -> str:
+
+        system_content = SYSTEM_PROMPT
+
+        if summary:
+            system_content = (
+                f"Conversation summary:\n"
+                f"{summary}\n\n"
+                f"{system_content}"
+            )
 
         formatted_messages = [
 
             {
                 "role": "system",
-                "content": SYSTEM_PROMPT
+                "content": system_content
             },
 
             *[

@@ -15,4 +15,5 @@ class Message(BaseModel):
 
 class ChatRequest(BaseModel):
 
-    messages: list[Message]
+    conversation_id: int | None = None
+    message: str

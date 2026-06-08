@@ -11,4 +11,6 @@ dependencies = [
     "pydantic>=2.13.4",
     "python-dotenv>=1.2.2",
     "uvicorn>=0.49.0",
+    "supabase>=2.0.0",
+    "google-generativeai>=0.8.0",
 ]
